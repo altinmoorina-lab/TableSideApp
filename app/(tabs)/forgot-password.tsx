@@ -2,20 +2,25 @@ import { Link, useRouter } from 'expo-router';
 import React, { useState } from 'react';
 import { KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 
-import { useTableSide } from '@/context/table-side-context';
+import { resetPassword } from '@/services/table-side-api';
 
-export default function LoginScreen() {
+export default function ForgotPasswordScreen() {
   const router = useRouter();
-  const { signIn } = useTableSide();
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const [sent, setSent] = useState(false);
 
-  const handleLogin = async () => {
+  const handleReset = async () => {
+    if (!email) return;
     setLoading(true);
-    await signIn(email || 'altin@example.com', password || 'password123');
-    setLoading(false);
-    router.replace('/');
+    try {
+      await resetPassword(email);
+      setSent(true);
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -27,42 +32,37 @@ export default function LoginScreen() {
         showsVerticalScrollIndicator={false}>
         <View style={styles.header}>
           <Text style={styles.logo}>TableSide</Text>
-          <Text style={styles.title}>Welcome back</Text>
+          <Text style={styles.title}>Reset Password</Text>
         </View>
 
         <View style={styles.form}>
-          <TextInput
-            value={email}
-            onChangeText={setEmail}
-            placeholder="Email"
-            placeholderTextColor="#958B7F"
-            style={styles.input}
-            keyboardType="email-address"
-            autoCapitalize="none"
-          />
-          <TextInput
-            value={password}
-            onChangeText={setPassword}
-            placeholder="Password"
-            placeholderTextColor="#958B7F"
-            secureTextEntry
-            style={styles.input}
-          />
-          <Pressable style={styles.primaryButton} onPress={handleLogin} disabled={loading}>
-            <Text style={styles.primaryText}>{loading ? 'Signing in...' : 'Sign in'}</Text>
-          </Pressable>
-          <Link href="/forgot-password" asChild>
-            <Pressable>
-              <Text style={styles.forgotText}>Forgot password?</Text>
-            </Pressable>
-          </Link>
+          {sent ? (
+             <View style={styles.successBox}>
+                <Text style={styles.successText}>If an account exists for {email}, a password reset link has been sent.</Text>
+             </View>
+          ) : (
+            <>
+              <TextInput
+                value={email}
+                onChangeText={setEmail}
+                placeholder="Email"
+                placeholderTextColor="#958B7F"
+                style={styles.input}
+                keyboardType="email-address"
+                autoCapitalize="none"
+              />
+              <Pressable style={styles.primaryButton} onPress={handleReset} disabled={loading}>
+                <Text style={styles.primaryText}>{loading ? 'Sending...' : 'Send Reset Link'}</Text>
+              </Pressable>
+            </>
+          )}
         </View>
 
         <View style={styles.footer}>
-          <Text style={styles.footerText}>New here?</Text>
-          <Link href="/register" asChild>
+          <Text style={styles.footerText}>Remember your password?</Text>
+          <Link href="/login" asChild>
             <Pressable>
-              <Text style={styles.footerLink}>Create account</Text>
+              <Text style={styles.footerLink}>Back to Login</Text>
             </Pressable>
           </Link>
         </View>
@@ -126,12 +126,17 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontWeight: '900',
   },
-  forgotText: {
-    color: '#8D5A12',
-    fontSize: 14,
-    fontWeight: '800',
+  successBox: {
+    padding: 16,
+    backgroundColor: '#EBF4EC',
+    borderRadius: 12,
+  },
+  successText: {
+    color: '#19231F',
+    fontSize: 15,
+    fontWeight: '600',
     textAlign: 'center',
-    paddingVertical: 4,
+    lineHeight: 22,
   },
   footer: {
     flexDirection: 'row',

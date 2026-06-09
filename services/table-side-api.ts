@@ -49,6 +49,11 @@ export async function registerUser({ name, email }: RegisterPayload) {
   };
 }
 
+export async function resetPassword(email: string) {
+  await wait();
+  return { success: true, email };
+}
+
 export async function fetchDashboard() {
   await wait();
   return {

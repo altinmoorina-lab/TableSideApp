@@ -1,4 +1,14 @@
-import React, { ReactNode, createContext, useContext, useMemo, useState } from 'react';
+import React, { ReactNode, createContext, useContext, useEffect, useMemo, useState } from 'react';
+import * as Notifications from 'expo-notifications';
+import * as Device from 'expo-device';
+
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: true,
+    shouldSetBadge: false,
+  }),
+});
 
 import {
   AppNotification,
@@ -51,6 +61,12 @@ type TableSideContextValue = {
 const TableSideContext = createContext<TableSideContextValue | null>(null);
 
 export function TableSideProvider({ children }: { children: ReactNode }) {
+  useEffect(() => {
+    if (Device.isDevice) {
+      Notifications.requestPermissionsAsync();
+    }
+  }, []);
+
   const [user, setUser] = useState<User | null>({
     id: 'user-1',
     name: 'Altin Morina',
@@ -96,10 +112,18 @@ export function TableSideProvider({ children }: { children: ReactNode }) {
       reserveTable: async (restaurantId, date, time, guests) => {
         const reservation = await createReservation({ restaurantId, date, time, guests });
         setReservations((current) => [reservation, ...current]);
+        const title = 'Reservation confirmed';
+        const body = `${reservation.restaurantName} saved your ${time} table.`;
+        
         setNotifications((current) => [
-          buildNotification('Reservation confirmed', `${reservation.restaurantName} saved your ${time} table.`),
+          buildNotification(title, body),
           ...current,
         ]);
+        
+        await Notifications.scheduleNotificationAsync({
+          content: { title, body },
+          trigger: null,
+        });
       },
       placeOrder: async (reservationId, selectedItems) => {
         if (selectedItems.length === 0) {
