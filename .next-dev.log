@@ -1,0 +1,29 @@
+
+> techhub-marketplace@1.0.0 dev
+> next dev --hostname 127.0.0.1 --port 3000
+
+▲ Next.js 16.2.10 (Turbopack)
+- Local:         http://127.0.0.1:3000
+- Network:       http://127.0.0.1:3000
+- Environments: .env.local
+✓ Ready in 760ms
+
+ GET /products 200 in 2.5s (next.js: 83ms, application-code: 2.4s)
+ GET / 200 in 3.1s (next.js: 1549ms, application-code: 1582ms)
+ GET /products/logitech-mx-master-3s 200 in 3.7s (next.js: 2.9s, generate-params: 2.4s, application-code: 827ms)
+ GET /api/auth/session 200 in 1203ms (next.js: 1033ms, application-code: 170ms)
+ GET /api/favorites?userEmail=admin%40techhub.com 200 in 100ms (next.js: 51ms, application-code: 49ms)
+ GET /products 304 in 114ms (next.js: 20ms, application-code: 94ms)
+ GET /api/auth/session 200 in 19ms (next.js: 4ms, application-code: 15ms)
+ GET /api/favorites?userEmail=admin%40techhub.com 304 in 18ms (next.js: 4ms, application-code: 14ms)
+ GET /_next/data/development/index.json 200 in 37ms (next.js: 15ms, application-code: 22ms)
+ GET /_next/data/development/products.json 200 in 31ms (next.js: 17ms, application-code: 14ms)
+ GET /_next/data/development/favorites.json 200 in 63ms (next.js: 49ms, application-code: 14ms)
+ GET /_next/data/development/search.json 200 in 75ms (next.js: 55ms, application-code: 19ms)
+ GET /_next/data/development/dashboard.json 200 in 595ms (next.js: 195ms, proxy.ts: 348ms, application-code: 52ms)
+ GET /_next/data/development/admin.json 200 in 212ms (next.js: 166ms, proxy.ts: 16ms, application-code: 30ms)
+ GET /_next/data/development/index.json 200 in 42ms (next.js: 23ms, application-code: 19ms)
+ GET /api/auth/session 200 in 28ms (next.js: 9ms, application-code: 19ms)
+ GET /api/auth/session 200 in 17ms (next.js: 4ms, application-code: 14ms)
+ GET /api/auth/session 200 in 60ms (next.js: 6ms, application-code: 54ms)
+ GET /api/auth/session 200 in 20ms (next.js: 7ms, application-code: 12ms)

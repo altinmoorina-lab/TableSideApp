@@ -1,0 +1,1 @@
+[browser] Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior (file://C:/Users/Altin Morina/TableSideApp/.next/dev/static/chunks/node_modules_next_dist_0zk-zb1._.js:1226:13)

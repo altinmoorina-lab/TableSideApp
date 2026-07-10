@@ -1,79 +1,30 @@
-# TableSide - Mobile Development Project
+# TechHub Marketplace - Project Report
 
 ## Project Scope
 
-TableSide is a mobile restaurant reservation application built with Expo SDK 54 and React Native. The app lets a user sign in, browse restaurants, reserve a table, pre-order menu items, and receive notifications about reservations and orders.
+TechHub Marketplace is a web application for browsing technology products, saving favorites, and managing the catalog through an admin panel.
 
-## Functional Requirements Coverage
+## Requirements Coverage
 
-- User Authentication: login and register screens update the app session.
-- Feature Set:
-  - Booking System: create table reservations with restaurant, date, time, and guest count.
-  - Menu / Orders: select dishes and send an order to the kitchen.
-  - Notifications / Dashboard: live reservation, order, and alert updates.
-  - Restaurant Discovery: browse restaurant cards with photos, ratings, open tables, and cuisine.
-- API Integration: the app contains a backend-style service layer and a local Node REST API in `backend/server.js`.
-- Responsive UI/UX: all main screens are mobile-first, scrollable, and built with Expo Router tabs.
-- Notifications: in-app notification list with unread/read state.
+- Minimum 10 pages: Home, About, Contact, Login, Register, Dashboard, Admin, Products, Product Details, Profile, Favorites, Search, FAQ, Terms, and 404.
+- Reusable components: Header, Footer, ProductCard, Button, Modal, Layout.
+- Authentication: NextAuth credentials plus Google/Facebook provider configuration.
+- Role management: middleware protects dashboard/profile and restricts admin routes to admin users.
+- CRUD: product CRUD through `/api/products` and admin UI; review/contact/favorites API routes provide additional entity operations.
+- MongoDB: Mongoose models for User, Product, Favorite, Review, and ContactMessage.
+- State management: Context API in `context/marketplace-context.tsx`, useState/useEffect, and custom hook `hooks/use-favorites.ts`.
+- Data fetching: `getServerSideProps`, `getStaticProps`, `getStaticPaths`, and `revalidate` are implemented.
+- Forms: Contact and Register use react-hook-form with zod validation and success/error messages.
+- Styling: Tailwind CSS responsive layouts for mobile, tablet, and desktop.
+- Testing: component and API tests are in `__tests__`.
+- Deployment: Vercel-ready scripts and `.env.example`.
 
-## Technical Architecture
+## Demo Flow
 
-- Mobile app: Expo SDK 54, Expo Router, React Native, TypeScript.
-- State layer: `context/table-side-context.tsx`.
-- Service layer: `services/table-side-api.ts`.
-- Local database seed: `constants/table-side-data.ts`.
-- Optional local REST backend: `backend/server.js` with `backend/db.json`.
-
-## Main Modules
-
-1. Auth Module
-   - Login
-   - Register
-   - Session state
-
-2. Reservation Module
-   - Restaurant selection
-   - Guest counter
-   - Time slot selection
-   - Reservation history
-
-3. Orders Module
-   - Menu selection
-   - Checkout total
-   - Send order to kitchen
-   - Order history
-
-4. Dashboard / Notifications Module
-   - Upcoming reservation
-   - Order count
-   - Unread alerts
-   - Weather/API demo card
-
-## How To Run
-
-```bash
-npm run web
-```
-
-Optional backend:
-
-```bash
-npm run backend
-```
-
-The backend runs on `http://localhost:4000` and exposes:
-
-- `GET /api/dashboard`
-- `POST /api/login`
-- `POST /api/register`
-- `POST /api/reservations`
-
-## Testing Notes
-
-- Run `npm run lint` before submission.
-- Demo flow:
-  1. Open Home.
-  2. Browse Explore.
-  3. Create a reservation in Bookings.
-  4. Place an order in Orders.
-  5. Open Profile and show notifications/account data.
+1. Open Home and Products.
+2. Open a Product Details page.
+3. Save products to Favorites.
+4. Login with `admin@techhub.com` / `admin123`.
+5. Open Dashboard, Profile, and Admin.
+6. Create, update, and delete a product.
+7. Submit the Contact form.

@@ -1,50 +1,64 @@
-# Welcome to your Expo app 👋
+# TechHub Marketplace
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+TechHub Marketplace is a Next.js web application where users browse technology products, save favorites, manage their profile, and admins manage the product catalog.
 
-## Get started
+## Features
 
-1. Install dependencies
+- 10+ linked pages: Home, About, Contact, Login, Register, Dashboard, Admin, Products, Product Details, Profile, Favorites, Search, FAQ, Terms, and 404.
+- NextAuth authentication with credentials plus Google/Facebook provider configuration.
+- Middleware role protection for user and admin routes.
+- Product CRUD in the admin panel and API routes.
+- Favorites, reviews, and contact message flows.
+- MongoDB/Mongoose model files for User, Product, Favorite, Review, and ContactMessage.
+- SSR, SSG, getStaticPaths, and ISR examples.
+- Tailwind CSS responsive design.
+- Jest and React Testing Library tests.
 
-   ```bash
-   npm install
-   ```
-
-2. Start the app
-
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+## Install
 
 ```bash
-npm run reset-project
+npm install
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+Create `.env.local` from `.env.example`:
 
-## Learn more
+```bash
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=replace-with-a-long-random-secret
+MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/techhub
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+FACEBOOK_CLIENT_ID=
+FACEBOOK_CLIENT_SECRET=
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+## Run
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+```bash
+npm run dev
+```
 
-## Join the community
+Open `http://localhost:3000`.
 
-Join our community of developers creating universal apps.
+Demo accounts:
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+- User: `altin@example.com` / `password123`
+- Admin: `admin@techhub.com` / `admin123`
+
+## Tests
+
+```bash
+npm test
+```
+
+## Deployment
+
+Deploy on Vercel and add the same environment variables from `.env.local` in the Vercel project settings.
+
+Live link: add the Vercel URL after deployment.
+
+Screenshots: add screenshots of Home, Products, Product Details, Dashboard, and Admin after deployment.
+
+## Group Members
+
+- Altin Morina: frontend UI, authentication, product CRUD, testing, and documentation.

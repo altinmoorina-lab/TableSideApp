@@ -1,3 +1,8 @@
-# Expo HAS CHANGED
+# TechHub Marketplace
 
-Read the exact versioned docs at https://docs.expo.dev/versions/v54.0.0/ before writing any code.
+This folder is now a Next.js website project, not the previous Expo/TableSide app.
+
+- Use Next.js Pages Router patterns for pages and API routes.
+- Keep authentication with NextAuth and role protection for user/admin pages.
+- Style with Tailwind CSS.
+- Keep the project aligned with the professor's web-development PDF requirements.
