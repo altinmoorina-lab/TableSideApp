@@ -34,6 +34,7 @@ export default function ProductDetails({ product, reviews }: ProductDetailsProps
             src={product.image}
             alt={product.name}
             className="h-full max-h-[520px] w-full rounded object-contain"
+            referrerPolicy="no-referrer"
             onError={() => setImageFailed(true)}
           />
         ) : (

@@ -144,8 +144,12 @@ export function deleteReview(id: string) {
 
 type ProductRecord = Product & { _id?: unknown };
 
+const seedImageBySlug = new Map(seedProducts.map((product) => [product.slug, product.image]));
+
 function normalizeProduct(product: ProductRecord) {
   const slug = product.slug;
+  const seedImage = seedImageBySlug.get(slug);
+  const image = seedImage || product.image;
 
   return {
     id: product.id || String(product._id || `prod-${Date.now()}`),
@@ -156,7 +160,7 @@ function normalizeProduct(product: ProductRecord) {
     price: product.price,
     stock: product.stock,
     rating: product.rating,
-    image: product.image || `/products/${slug}.jpg`,
+    image: image || `/products/${slug}.jpg`,
     featured: product.featured,
     description: product.description,
     specs: product.specs || [],

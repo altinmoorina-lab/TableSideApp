@@ -31,6 +31,7 @@ export function ProductCard({ product, favorite = false, onToggleFavorite }: Pro
               src={product.image}
               alt={product.name}
               className="h-full w-full rounded object-cover transition duration-500 group-hover:scale-105"
+              referrerPolicy="no-referrer"
               onError={() => setImageFailed(true)}
             />
           ) : (
